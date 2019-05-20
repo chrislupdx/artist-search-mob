@@ -1,14 +1,21 @@
 import React from 'react';
 import Artists from './Artists';
+import artistData from '../../data/artist.js';
+import Paging from './Paging';
 
 export default function App() {
-  const artistList = [
-    { id: 'randomstring', name: 'Led Zeppelin' },
-    { id: 'randomstring1', name: 'Led Puppy' },
-    { id: 'randomstring2', name: 'Led Rabbit' },
-    { id: 'randomstring3', name: 'Led Orange' }
-  ];
+  const artistList = artistData;
+  const handleNextButton = () => console.log('Next!');
+  const pagingProps = {
+    currentPage: 2,
+    totalPages: 5,
+    handleNextButton,
+    handlePreviousButton: function() {console.log('Previous!');}
+  };
   return (
-    <Artists artists={artistList} />
+    <>
+      <Paging {...pagingProps} />
+      <Artists artists={artistList} />
+    </>
   );
 }
