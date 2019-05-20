@@ -15,6 +15,6 @@ Paging.propTypes = {
   totalPages: PropTypes.number.isRequired,
   handlePreviousButton: PropTypes.func.isRequired,
   handleNextButton: PropTypes.func.isRequired
-}
+};
 
 export default Paging;
