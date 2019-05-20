@@ -4,7 +4,7 @@ import Artist from './Artist';
 
 function Artists({ artists }) {
   const artistList = artists.map(artist => {
-    return <Artist name={artist.name} key={artist.id} />;
+    return <Artist id={artist.id} name={artist.name} key={artist.id} />;
   });
 
   return (
