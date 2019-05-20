@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchResults from './SearchResults';
+import Artists from './Artists';
 
 export default function App() {
   const artistList = [
@@ -9,6 +9,6 @@ export default function App() {
     { id: 'randomstring3', name: 'Led Orange' }
   ];
   return (
-    <SearchResults artists={artistList} />
+    <Artists artists={artistList} />
   );
 }

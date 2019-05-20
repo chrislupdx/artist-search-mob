@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Artist from './Artist';
 
-function SearchResults({ artists }) {
+function Artists({ artists }) {
   const artistList = artists.map(artist => {
-    return (
-      <li key={artist.id}>{artist.name}</li>
-    );
+    return <Artist name={artist.name} key={artist.id} />;
   });
 
   return (
@@ -15,8 +14,8 @@ function SearchResults({ artists }) {
   );
 }
 
-SearchResults.propTypes = {
+Artists.propTypes = {
   artists: PropTypes.array.isRequired
 };
 
-export default SearchResults;
+export default Artists;
