@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ArtistSearch({ searchQuery, handleSubmit, handleChange }) {
+function SearchQuery({ searchQuery, handleSubmit, handleChange }) {
   return (
     <>
       <input onChange={handleChange} type="text" name="searchQuery" value={searchQuery} />
@@ -10,10 +10,10 @@ function ArtistSearch({ searchQuery, handleSubmit, handleChange }) {
   );
 }
 
-ArtistSearch.propTypes = {
+SearchQuery.propTypes = {
   searchQuery: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired
 };
 
-export default ArtistSearch;
+export default SearchQuery;
