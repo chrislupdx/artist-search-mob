@@ -2,12 +2,14 @@ import React, { PureComponent } from 'react';
 import Paging from '../components/Paging';
 import Releases from '../components/detail/Releases';
 import theBeatles from '../../data/releasesData';
+import { cleanData } from '../services/getArtist';
+import artistData from '../../data/artistData';
 
 export default class ArtistDetail extends PureComponent {
   state = {
     currentPage: 1,
     totalPages: 10,
-    artist: theBeatles
+    artist: cleanData(artistData, theBeatles)
   }
 
   handleNextButton = () => {
