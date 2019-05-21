@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ArtistSearch from '../containers/ArtistSearch';
 import ArtistDetail from '../containers/ArtistDetail';
-import ReleaseDetail from './songs/ReleaseDetail';
+import ReleaseDetail from '../containers/ReleaseDetail';
 
 export default function App() {
   

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Song({ title, artistName }) {
+  const cleanTitle = encodeURIComponent(title);
+  const cleanArtist = encodeURIComponent(artistName);
   return (
     <li>
-      <Link to={`/song/${title}/artist/${artistName}`}>
+      <Link to={`/song/${cleanTitle}/${cleanArtist}`}>
         <p>{title}</p>
       </Link>
     </li>
@@ -13,7 +15,7 @@ function Song({ title, artistName }) {
 }
 
 Song.propTypes = {
-  id: PropTypes.string.isRequired,
+  artistName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
 
