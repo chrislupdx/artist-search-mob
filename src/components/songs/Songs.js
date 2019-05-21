@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Song from './Song';
 
 function Songs({ release, artistName }) {
+  console.log(release);
   const songList = release.recordings.map(song => {
     return <Song key={song.id} title={song.title} artistName={artistName} /> 
   });
@@ -15,7 +16,7 @@ function Songs({ release, artistName }) {
 
 }
 
-Songs.PropTypes = {
+Songs.propTypes = {
   release: PropTypes.object.isRequired,
   artistName: PropTypes.string.isRequired
 };

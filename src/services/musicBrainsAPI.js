@@ -34,6 +34,18 @@ export function getArtistReleases(query, offset) {
     });
 }
 
+export function getSongs(id) {
+  return fetch(`http://musicbrainz.org/ws/2/recording?release=${id}&fmt=json`)
+    .then(res => {
+      return [res.ok, res.json()];
+    })
+    .then(([ok, body]) => {
+      if(!ok) throw 'Unable to find songs';
+
+      return body;
+    });
+}
+
 export function cleanData(artist, artistsReleases) {
   const releases = artistsReleases.releases.map(release => {
     const image = release['cover-art-archive'].front ? `http://coverartarchive.org/release/${release.id}/front` : 'https://i.giphy.com/media/l0NwNQ5nfmFOPvv5m/giphy.webp';
