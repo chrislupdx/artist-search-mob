@@ -1,6 +1,6 @@
 import releasesData from '../../data/releasesData.js';
 import artistData from '../../data/artistData';
-import { cleanData } from '../services/getArtist';
+import { cleanData } from './musicBrainsAPI';
 
 describe('getArtist tests', () => {
   it('cleans our 3rd party API data', () => {
