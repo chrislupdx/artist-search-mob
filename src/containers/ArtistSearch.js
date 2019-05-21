@@ -9,24 +9,35 @@ export default class ArtistSearch extends PureComponent {
   state = {
     artistList: [],
     currentPage: 1,
-    totalPages: 10,
+    totalPages: 1,
     searchQuery: ''
   }
 
   handleNextButton = () => {
-    this.setState(state => {
-      return {
-        currentPage: state.currentPage + 1
-      };
-    });
+    const offset = this.state.currentPage * 25;
+    getArtists(this.state.searchQuery, offset)
+      .then(body => {
+        this.setState(state => {
+          return {
+            artistList: body.artists,
+            currentPage: state.currentPage + 1
+          };
+        });
+      });
   }
 
   handlePreviousButton = () => {
-    this.setState(state => {
-      return {
-        currentPage: state.currentPage - 1
-      };
-    });
+    const offset = (this.state.currentPage - 2) * 25;
+    console.log(offset);
+    getArtists(this.state.searchQuery, offset)
+      .then(body => {
+        this.setState(state => {
+          return {
+            artistList: body.artists,
+            currentPage: state.currentPage - 1
+          };
+        });
+      });
   }
 
   handleChange = ({ target }) => {
@@ -35,10 +46,11 @@ export default class ArtistSearch extends PureComponent {
 
   handleSubmit = () => {
     const query = this.state.searchQuery;
-    getArtists(query)
+    getArtists(query, 0)
       .then(body => {
         this.setState({
-          artistList: body.artists
+          artistList: body.artists,
+          totalPages: Math.ceil(body.count / 25)
         });
       });
     
