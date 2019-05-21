@@ -1,31 +1,72 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Paging from '../components/Paging';
 import Releases from '../components/detail/Releases';
-import theBeatles from '../../data/releasesData';
-import { cleanData } from '../services/getArtist';
-import artistData from '../../data/artistData';
+import { getArtist, getArtistReleases, cleanData } from '../services/musicBrainsAPI';
 
 export default class ArtistDetail extends PureComponent {
   state = {
     currentPage: 1,
-    totalPages: 10,
-    artist: cleanData(artistData, theBeatles)
+    totalPages: 1,
+    artist: {
+      id: '',
+      name: '',
+      releases: []
+    }
+  }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired
   }
 
   handleNextButton = () => {
-    this.setState(state => {
-      return {
-        currentPage: state.currentPage + 1
-      };
-    });
+    const offset = this.state.currentPage * 25;
+    const id = this.state.artist.id;
+    getArtistReleases(id, offset)
+      .then(releaseBody => {
+        const artist = {
+          id: this.state.artist.id,
+          name: this.state.artist.name
+        };
+        this.setState(state => {
+          return {
+            artist: cleanData(artist, releaseBody),
+            currentPage: state.currentPage + 1
+          };
+        });
+      });
   }
 
   handlePreviousButton = () => {
-    this.setState(state => {
-      return {
-        currentPage: state.currentPage - 1
-      };
-    });
+    const offset = (this.state.currentPage - 2) * 25;
+    const id = this.state.artist.id;
+    getArtistReleases(id, offset)
+      .then(releaseBody => {
+        const artist = {
+          id: this.state.artist.id,
+          name: this.state.artist.name
+        };
+        this.setState(state => {
+          return {
+            artist: cleanData(artist, releaseBody),
+            currentPage: state.currentPage - 1
+          };
+        });
+      });
+  }
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    return Promise.all([
+      getArtistReleases(id, 0),
+      getArtist(id)
+    ])
+      .then(([releaseBody, artistBody]) => {
+        this.setState({
+          artist: cleanData(artistBody, releaseBody),
+          totalPages: Math.ceil(releaseBody['release-count'] / 25)
+        });
+      });
   }
 
   render() {
