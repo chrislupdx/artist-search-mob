@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import Artists from '../components/Artists';
 import SearchQuery from '../components/SearchQuery';
 import Paging from '../components/Paging';
-import artistData from '../../data/artist';
+import artistListData from '../../data/artistListData';
 
 export default class ArtistSearch extends PureComponent {
 
   state = {
-    artistList: artistData,
+    artistList: artistListData,
     currentPage: 1,
     totalPages: 10,
     searchQuery: ''

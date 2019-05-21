@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Paging from '../components/Paging';
 import Releases from '../components/detail/Releases';
-import theBeatles from '../../data/the-beatles';
+import theBeatles from '../../data/releasesData';
 
 export default class ArtistDetail extends PureComponent {
   state = {
