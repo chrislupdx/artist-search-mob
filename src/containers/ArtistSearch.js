@@ -28,7 +28,6 @@ export default class ArtistSearch extends PureComponent {
 
   handlePreviousButton = () => {
     const offset = (this.state.currentPage - 2) * 25;
-    console.log(offset);
     getArtists(this.state.searchQuery, offset)
       .then(body => {
         this.setState(state => {
