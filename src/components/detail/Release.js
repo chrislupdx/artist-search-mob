@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 function Release({ id, title, image, artistName }) {
   const cleanTitle = encodeURIComponent(title);
+  const cleanArtist = encodeURIComponent(artistName);
   return (
     <li>
-      <Link to={`/release/${id}/title/${cleanTitle}/artist/${artistName}`}>
+      <Link to={`/release/${id}/${cleanTitle}/${cleanArtist}`}>
         <img src={image} alt={`artwork of ${title}`}/>
         <p>{title}</p>
       </Link>

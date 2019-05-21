@@ -8,11 +8,12 @@ export default class ReleaseDetail extends PureComponent {
     match: PropTypes.object.isRequired
   }
   render() {
-    const artistName = this.props.match.params.name;
+    const artistName = decodeURIComponent(this.props.match.params.name);
+    const title = decodeURIComponent(this.props.match.params.title);
     return (
       <>
       <h2>{artistName}</h2>
-      <h3>{this.props.match.params.title}</h3>
+      <h3>{title}</h3>
       <Songs release={releaseData} artistName={artistName} />
       </>
     );
