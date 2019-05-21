@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Release from './Release';
 
 function Releases({ artist }) {
+  const artistName = artist.name;
   const releaseList = artist.releases.map(release => {
     const { id, title, image } = release;
-    const releaseProps = { id, title, image };
+    const releaseProps = { id, title, image, artistName };
     return <Release key={id} {...releaseProps} />;
   });
 
