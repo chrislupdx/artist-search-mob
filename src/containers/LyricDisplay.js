@@ -33,7 +33,7 @@ export default class LyricDisplay extends PureComponent {
       <>
       <h2>{artistName}</h2>
       <h3>{title}</h3>
-      <p>{lyrics}</p>
+      <p style={{ whiteSpace: 'pre' }}>{lyrics}</p>
       </>
 
     );
