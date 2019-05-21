@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import Artists from '../components/Artists';
 import SearchQuery from '../components/SearchQuery';
 import Paging from '../components/Paging';
-import artistListData from '../../data/artistListData';
+import { getArtists } from '../services/musicBrainsAPI';
 
 export default class ArtistSearch extends PureComponent {
 
   state = {
-    artistList: artistListData,
+    artistList: [],
     currentPage: 1,
     totalPages: 10,
     searchQuery: ''
@@ -34,7 +34,14 @@ export default class ArtistSearch extends PureComponent {
   }
 
   handleSubmit = () => {
-    console.log(this.state.searchQuery);
+    const query = this.state.searchQuery;
+    getArtists(query)
+      .then(body => {
+        this.setState({
+          artistList: body.artists
+        });
+      });
+    
   }
 
   render() {
